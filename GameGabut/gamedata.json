@@ -1,0 +1,97 @@
+{
+  "weapons": [
+    {
+      "name": "Wooden Sword",
+      "price": 10,
+      "attackBonus": 2
+    },
+    {
+      "name": "Iron Sword",
+      "price": 50,
+      "attackBonus": 5
+    },
+    {
+      "name": "Steel Sword",
+      "price": 100,
+      "attackBonus": 10
+    },
+    {
+      "name": "Mythril Sword",
+      "price": 500,
+      "attackBonus": 20
+    }
+  ],
+  "armors": [
+    {
+      "name": "Leather Armor",
+      "price": 20,
+      "defenseBonus": 2
+    },
+    {
+      "name": "Chain Mail",
+      "price": 80,
+      "defenseBonus": 5
+    },
+    {
+      "name": "Plate Armor",
+      "price": 150,
+      "defenseBonus": 10
+    },
+    {
+      "name": "Dragon Scale Armor",
+      "price": 800,
+      "defenseBonus": 20
+    }
+  ],
+  "potions": [
+    {
+      "name": "Small Health Potion",
+      "price": 15,
+      "healAmount": 20
+    },
+    {
+      "name": "Medium Health Potion",
+      "price": 30,
+      "healAmount": 50
+    },
+    {
+      "name": "Large Health Potion",
+      "price": 60,
+      "healAmount": 100
+    }
+  ],
+  "enemies": [
+    {
+      "name": "Goblin",
+      "health": 30,
+      "attack": 5,
+      "defense": 2,
+      "expReward": 10,
+      "goldReward": 5
+    },
+    {
+      "name": "Orc",
+      "health": 50,
+      "attack": 8,
+      "defense": 3,
+      "expReward": 20,
+      "goldReward": 10
+    },
+    {
+      "name": "Troll",
+      "health": 100,
+      "attack": 12,
+      "defense": 5,
+      "expReward": 50,
+      "goldReward": 30
+    },
+    {
+      "name": "Dragon",
+      "health": 200,
+      "attack": 20,
+      "defense": 10,
+      "expReward": 100,
+      "goldReward": 100
+    }
+  ]
+}
