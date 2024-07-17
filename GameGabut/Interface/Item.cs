@@ -9,7 +9,7 @@ namespace GameGabut.Interface
     class Item
     {
         public string Name { get; protected set; }
-        public int Price { get; protected set; }
+        public int Price { get; set; }
         public int Status { get; set; }
         public bool IsEquipped { get; set; }
 

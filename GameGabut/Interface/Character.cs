@@ -40,11 +40,15 @@ namespace GameGabut.Interface
             return baseDamage;
         }
 
-        public void TakeDamage(int damage)
+        public int TakeDamage(int damage)
         {
             int actualDamage = Math.Max(damage - Defense, 0);
             Health -= actualDamage;
-            if (Health < 0) Health = 0;
+            if (Health < 0) { 
+                Health = 0; 
+                return actualDamage; 
+            }
+            return actualDamage;
         }
     }
 

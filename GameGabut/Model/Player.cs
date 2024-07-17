@@ -36,7 +36,6 @@ namespace GameGabut.Model
             {
                 Inventory.Remove(item);
                 GainGold(item.Price);
-                Console.WriteLine($"Kamu menjual {item.Name} seharga {item.Price} gold.");
                 return item.Price;
             }
             else
@@ -88,6 +87,8 @@ namespace GameGabut.Model
                 Health += 20;
                 Attack += 2;
                 Defense += 1;
+                CriticalChance = Level % 2 == 1 ? CriticalChance + 0.1 : CriticalChance;
+                CriticalHit = Level % 2 == 0 ? CriticalHit + 0.2 : CriticalHit;
                 Console.WriteLine($"Level Up! Kamu sekarang level {Level}.");
             }
         }
@@ -120,6 +121,8 @@ namespace GameGabut.Model
                 Attack = Attack,
                 Defense = Defense,
                 Deaths = Deaths,
+                CriticalHit = CriticalHit,
+                CriticalChance = CriticalChance,
                 Inventory = Inventory.Select(item => new ItemData
                 {
                     Name = item.Name,
@@ -148,6 +151,8 @@ namespace GameGabut.Model
                     Experience = data.Experience,
                     Gold = data.Gold,
                     Deaths = data.Deaths,
+                    Attack = data.Attack,
+                    Defense = data.Defense,
                     CriticalChance = data.CriticalChance,
                     CriticalHit = data.CriticalHit                    
                 };
@@ -175,9 +180,15 @@ namespace GameGabut.Model
                         if (item.IsEquipped)
                         {
                             if (item is Weapon weapon)
+                            {
                                 player.EquippedWeapon = weapon;
+                                player.Attack += weapon.AttackBonus;
+                            }
                             else if (item is Armor armor)
+                            {
                                 player.EquippedArmor = armor;
+                                player.Defense += armor.DefenseBonus;
+                            }                                
                         }
                     }
                 }
@@ -374,12 +385,12 @@ namespace GameGabut.Model
             Console.WriteLine($"HP: {Health}");
 
             int baseAttack = Attack - (EquippedWeapon?.AttackBonus ?? 0);
-            Console.WriteLine($"Attack: {Attack} ({baseAttack}" + (EquippedWeapon != null ? $" +{EquippedWeapon.AttackBonus})" : ")"));
+            Console.WriteLine($"Attack: {Attack} ({baseAttack} +" + (EquippedWeapon?.AttackBonus ?? 0) + ")");
 
-            Console.WriteLine($"Critical Hit: {CriticalHit} * Base Attack");
-            Console.WriteLine($"Critical Chance: {CriticalChance}%");
             int baseDefense = Defense - (EquippedArmor?.DefenseBonus ?? 0);
-            Console.WriteLine($"Defense: {Defense} ({baseDefense}" + (EquippedArmor != null ? $" +{EquippedArmor.DefenseBonus})" : ")"));
+            Console.WriteLine($"Defense: {Defense} ({baseDefense} +" + (EquippedArmor?.DefenseBonus ?? 0) + ")");
+            Console.WriteLine($"Critical Hit: {CriticalHit}x Attack");
+            Console.WriteLine($"Critical Chance: {CriticalChance}%");
 
             Console.WriteLine($"Experience: {Experience}/{Level * 100}");
             Console.WriteLine($"Gold: {Gold}");
@@ -406,6 +417,7 @@ namespace GameGabut.Model
                         // Refine berhasil, tambahkan Attack sesuai dengan peningkatan yang diinginkan
                         int increaseAmount = random.Next(1, 6); // Contoh: peningkatan antara 1 sampai 5
                         weapon.Status += increaseAmount;
+                        weapon.Price = weapon.Price + (weapon.Price * 2 / 100);
 
                         Console.WriteLine($"Berhasil merawat {weapon.Name}! Attack +{increaseAmount}");
                     }
@@ -430,7 +442,7 @@ namespace GameGabut.Model
         {
             if (Inventory.Contains(armor))
             {
-                int refineCost = armor.Status * 15; // Biaya perbaikan berdasarkan status
+                int refineCost = armor.Status * 25; // Biaya perbaikan berdasarkan status
                 if (Gold >= refineCost)
                 {
                     Console.WriteLine($"Mencoba untuk peningkatan {armor.Name}...");
@@ -445,7 +457,7 @@ namespace GameGabut.Model
                         int increaseAmount = random.Next(1, 6); // Contoh: peningkatan antara 1 sampai 5
                         armor.Status += increaseAmount;
 
-                        Console.WriteLine($"Berhasil merawat {armor.Name}! Attack +{increaseAmount}");
+                        Console.WriteLine($"Berhasil merawat {armor.Name}! Defense +{increaseAmount}");
                     }
                     else
                     {

@@ -84,13 +84,13 @@ namespace GameGabut
             // Berdasarkan level player, buat musuh dengan atribut yang disesuaikan
             // Contoh sederhana, Anda bisa mengalikan atribut musuh dengan level player
             // Sesuaikan dengan logika atau sistem skala kesulitan permainan Anda.
-            var enemyHealth = playerLevel == 1 ? enemy.Health : enemy.Health * (playerLevel / 2);
-            var enemyAttack = playerLevel == 1 ? enemy.Attack : enemy.Attack * (playerLevel / 2);
-            var enemyDefense = playerLevel == 1 ? enemy.Defense : enemy.Defense * (playerLevel / 2);
-            var enemyCriticalHit = playerLevel == 1 ? enemy.CriticalHit : enemy.CriticalHit * (playerLevel / 2);
-            var enemyCriticalChance = playerLevel == 1 ? enemy.CriticalChance : enemy.CriticalChance * (playerLevel / 2);
-            var expReward = playerLevel == 1 ? enemy.ExperienceReward : enemy.ExperienceReward * (playerLevel / 2);
-            var goldReward = playerLevel == 1 ? enemy.GoldReward : enemy.GoldReward * (playerLevel / 2);
+            var enemyHealth = playerLevel == 1 ? enemy.Health : (int)(enemy.Health * (playerLevel / (playerLevel % 2 == 0 ? 1 : 1.5)));
+            var enemyAttack = playerLevel == 1 ? enemy.Attack : (int)(enemy.Attack * (playerLevel / (playerLevel % 2 == 0 ? 1 : 1.5)));
+            var enemyDefense = playerLevel == 1 ? enemy.Defense : (int)(enemy.Defense * (playerLevel / (playerLevel % 2 == 0 ? 1 : 1.5)));
+            var enemyCriticalHit = playerLevel == 1 ? enemy.CriticalHit : (int)(enemy.CriticalHit * (playerLevel / (playerLevel % 2 == 0 ? 1 : 1.5)));
+            var enemyCriticalChance = playerLevel == 1 ? enemy.CriticalChance : (int)(enemy.CriticalChance * (playerLevel / (playerLevel % 2 == 0 ? 1 : 1.5)));
+            var expReward = playerLevel == 1 ? enemy.ExperienceReward : (int)(enemy.ExperienceReward * (playerLevel / (playerLevel % 2 == 0 ? 1 : 1.5)));
+            var goldReward = playerLevel == 1 ? enemy.GoldReward : enemy.Name == "Void Sovereign" ? (int)(enemy.GoldReward * playerLevel) : (int)(enemy.GoldReward * (playerLevel / (playerLevel % 2 == 0 ? 1 : 1.5)));
 
             return new Enemy(enemy.Name, enemyHealth, enemyAttack, enemyDefense, enemyCriticalHit, enemyCriticalChance, expReward, goldReward);
         }
@@ -108,7 +108,7 @@ namespace GameGabut
             while (player.Health > 0 && enemy.Health > 0)
             {
                 if (playerEscaped == true) break;
-                Console.WriteLine($"\n{player.Name} HP: {player.Health} | {enemy.Name} HP: {enemy.Health}");
+                Console.WriteLine($"\n{player.Name} HP: {player.Health} Atk: {player.Attack} Def: {player.Defense} | {enemy.Name} HP: {enemy.Health} Atk: {enemy.Attack} Def: {enemy.Defense}");
                 Console.WriteLine("1. Serang");
                 Console.WriteLine("2. Bertahan");
                 Console.WriteLine("3. Gunakan Potion");
@@ -123,8 +123,8 @@ namespace GameGabut
                 {
                     case "1":
                         int damage = player.PerformAttack();
-                        enemy.TakeDamage(damage);
-                        Console.WriteLine($"Kamu menyerang {enemy.Name} dan menyebabkan {damage} damage.");
+                        var takeDamage = enemy.TakeDamage(damage);
+                        Console.WriteLine($"Kamu menyerang {enemy.Name} dan menyebabkan {takeDamage} damage.");
                         break;
                     case "2":
                         playerDefending = true;
@@ -157,8 +157,8 @@ namespace GameGabut
                         enemyDamage /= 2; // Damage dikurangi setengah saat bertahan
                         Console.WriteLine($"Kamu bertahan dari serangan. Damage dikurangi menjadi {enemyDamage}.");
                     }
-                    player.TakeDamage(enemyDamage);
-                    Console.WriteLine($"{enemy.Name} menyerang dan menyebabkan {enemyDamage} damage.");
+                    var takeDamage = player.TakeDamage(enemyDamage);
+                    Console.WriteLine($"{enemy.Name} menyerang dan menyebabkan {takeDamage} damage.");
                 }
 
             }
