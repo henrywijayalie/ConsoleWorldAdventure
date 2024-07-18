@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -21,14 +22,19 @@ namespace GameGabut.Model
         public List<Item> Inventory { get; private set; }
         public Weapon EquippedWeapon { get; private set; }
         public Armor EquippedArmor { get; private set; }
+        public static List<RuneStone> RuneStones { get; private set; }
 
-        public Player(string name, int health, int attack, int defense, double criticalHit, double criticalChance) : base(name, health, attack, defense, criticalHit, criticalChance)
+        public Player(string name, int health, int attack, int defense, double criticalHit, double criticalChance, GameData gameData) : base(name, health, attack, defense, criticalHit, criticalChance)
         {
             Level = 1;
             Experience = 0;
             Gold = 20;
             Deaths = 0;
             Inventory = new List<Item>();
+
+            var dataRunes = gameData.RuneStones.Select(e => new RuneStone(e.Name, e.Price, 0, e.AttackBonus, e.DefenseBonus, e.CriticalChanceBonus)).ToList();
+            RuneStones = new List<RuneStone>();
+            RuneStones.AddRange(dataRunes);
         }
         public int Sell(Item item)
         {
@@ -56,11 +62,30 @@ namespace GameGabut.Model
 
         public void Die()
         {
+            Random rand = new Random();
             Deaths++;
             int expLoss = 50 * Level;
             Experience = Math.Max(0, Experience - expLoss);
+            int goldLoss = rand.Next(1, Level);
+            Gold -= goldLoss;
+            var (gold, silver, copper) = ConvertCopper(goldLoss);
+            var newAmount = "";
+            if (gold != 0)
+            {
+                newAmount += ($"{gold} Gold ");
+            }
+            if (silver != 0)
+            {
+                newAmount += ($"{silver} Silver ");
+            }
+            if (copper != 0)
+            {
+                newAmount += ($"{copper} Copper");
+            }
+
             Console.WriteLine($"Kamu mati! Total kematian: {Deaths}");
             Console.WriteLine($"Kamu kehilangan {expLoss} EXP.");
+            Console.WriteLine($"Kamu menjatuhkan {newAmount}.");
             Health = 100 + (Level - 1) * 20; // Reset HP
         }
 
@@ -75,16 +100,40 @@ namespace GameGabut.Model
         public void GainGold(int amount)
         {
             Gold += amount;
-            Console.WriteLine($"Kamu mendapatkan {amount} Gold.");
+
+            var (gold, silver, copper) = ConvertCopper(amount);
+            var newAmount = "";
+            if (gold != 0)
+            {
+                newAmount += ($"{gold} Gold ");
+            }
+            if (silver != 0)
+            {
+                newAmount += ($"{silver} Silver ");
+            }
+            if (copper != 0)
+            {
+                newAmount += ($"{copper} Copper");
+            }
+            Console.WriteLine($"Kamu mendapatkan {newAmount}.");
+        }
+
+        public (int Gold, int Silver, int Copper) ConvertCopper(int copper)
+        {
+            int gold = copper / 10000;
+            copper %= 10000;
+            int silver = copper / 100;
+            copper %= 100;
+            return (gold, silver, copper);
         }
 
         private void CheckLevelUp()
         {
-            if (Experience >= Level * 100)
+            if (Experience >= ((Level * 100) + (Health * Level / 2)))
             {
                 Level++;
-                Experience -= (Level - 1) * 100;
-                Health += 20;
+                Experience -= ((Level - 1) * 100) + (Health * Level / 2);
+                Health = Health + ((Health * 15 / 100) + Level);
                 Attack += 2;
                 Defense += 1;
                 CriticalChance = Level % 2 == 1 ? CriticalChance + 0.1 : CriticalChance;
@@ -106,6 +155,38 @@ namespace GameGabut.Model
             else
             {
                 Console.WriteLine("Kamu tidak memiliki potion.");
+            }
+        }
+        public void UseRuneStone()
+        {
+            Item runeStone = Inventory.Find(item => item is RuneStone);
+            if (runeStone != null)
+            {
+                var attackBonus = ((RuneStone)runeStone).AttackBonus;
+                var defenseBonus = ((RuneStone)runeStone).DefenseBonus;
+                var criticalChanceBonus = ((RuneStone)runeStone).CriticalChanceBonus;
+                Attack = Attack + attackBonus;
+                Defense = Defense + defenseBonus;
+                CriticalChance = CriticalChance + criticalChanceBonus;
+                var improvement = string.Empty;
+                if (attackBonus != 0)
+                {
+                    improvement += $"Attack +{attackBonus} ";
+                }
+                if (defenseBonus != 0)
+                {
+                    improvement += $"Defense +{defenseBonus} ";
+                }
+                if (criticalChanceBonus != 0)
+                {
+                    improvement += $"Critical Chance +{criticalChanceBonus}%";
+                }
+                Inventory.Remove(runeStone);
+                Console.WriteLine($"Kamu menggunakan {((RuneStone)runeStone).Name} dan meningkatkan {improvement}");
+            }
+            else
+            {
+                Console.WriteLine("Kamu tidak memiliki Rune Stone.");
             }
         }
 
@@ -138,14 +219,14 @@ namespace GameGabut.Model
             File.WriteAllText(fileName, jsonString);
         }
 
-        public static Player LoadFromJson(string name)
+        public static Player LoadFromJson(string name, GameData gameData)
         {
             string fileName = $"{name}.json";
             if (File.Exists(fileName))
             {
                 string jsonString = File.ReadAllText(fileName);
                 PlayerData data = JsonSerializer.Deserialize<PlayerData>(jsonString);
-                Player player = new Player(data.Name, data.Health, data.Attack, data.Defense, data.CriticalHit, data.CriticalChance)
+                Player player = new Player(data.Name, data.Health, data.Attack, data.Defense, data.CriticalHit, data.CriticalChance, gameData)
                 {
                     Level = data.Level,
                     Experience = data.Experience,
@@ -154,7 +235,7 @@ namespace GameGabut.Model
                     Attack = data.Attack,
                     Defense = data.Defense,
                     CriticalChance = data.CriticalChance,
-                    CriticalHit = data.CriticalHit                    
+                    CriticalHit = data.CriticalHit
                 };
 
                 foreach (var itemData in data.Inventory)
@@ -170,6 +251,22 @@ namespace GameGabut.Model
                             break;
                         case "Potion":
                             item = new Potion(itemData.Name, itemData.Price, itemData.Status, itemData.Status); // Assume HealAmount
+                            break;
+                        case "RuneStone":
+                            int AtkBonus = 0;
+                            int DefBonus = 0;
+                            double CritChanceBonus = 0;
+                            foreach (var dataRunestone in RuneStones)
+                            {
+                                if (dataRunestone.Name == itemData.Name)
+                                {
+                                    AtkBonus = dataRunestone.AttackBonus;
+                                    DefBonus = dataRunestone.DefenseBonus;
+                                    CritChanceBonus = dataRunestone.CriticalChanceBonus;
+
+                                }
+                            }
+                            item = new RuneStone(itemData.Name, itemData.Price, 0, AtkBonus, DefBonus, CritChanceBonus); // Assume Rune Stone Bonus
                             break;
                     }
 
@@ -188,7 +285,7 @@ namespace GameGabut.Model
                             {
                                 player.EquippedArmor = armor;
                                 player.Defense += armor.DefenseBonus;
-                            }                                
+                            }
                         }
                     }
                 }
@@ -212,16 +309,30 @@ namespace GameGabut.Model
         //        UseItem(Inventory[choice - 1]);
         //    }
         //}
-
+        public static int GetIntegerInput(string prompt)
+        {
+            int value;
+            while (true)
+            {
+                Console.Write(prompt);
+                if (int.TryParse(Console.ReadLine(), out value))
+                {
+                    return value;
+                }
+                else
+                {
+                    Console.WriteLine("Inputan harus angka");
+                }
+            }
+        }
 
         public void OpenInventory()
         {
             Console.WriteLine("Menu Inventory:");
             Console.WriteLine("1. Equip/Unequip");
             Console.WriteLine("2. Enhancement");
-            Console.Write("Pilih opsi: ");
 
-            int choice = int.Parse(Console.ReadLine());
+            int choice = GetIntegerInput("Masukkan pilihan Anda: ");
 
             switch (choice)
             {
@@ -263,7 +374,21 @@ namespace GameGabut.Model
         }
         private void DisplayRefineMenu()
         {
-            Console.WriteLine($"Gold: {Gold}");
+            var (gold, silver, copper) = ConvertCopper(Gold);
+            var newAmount = "";
+            if (gold != 0)
+            {
+                newAmount += ($"{gold} Gold ");
+            }
+            if (silver != 0)
+            {
+                newAmount += $"{silver} Silver ";
+            }
+            if (copper != 0)
+            {
+                newAmount += ($"{copper} Copper");
+            }
+            Console.WriteLine($"Uang : {newAmount}.");
             Console.WriteLine("Enhancement Menu:");
 
             int index = 1;
@@ -271,18 +396,48 @@ namespace GameGabut.Model
             {
                 if (item is Weapon weapon)
                 {
-                    int refineCost = weapon.Status * 25; // Biaya perbaikan berdasarkan status
+                    int refineCost = weapon.Status * 25; // Biaya perbaikan berdasarkan statu
+                    var (refineGold, refineSilver, refineCopper) = ConvertCopper(refineCost);
+                    var amountRefineWeapon = "";
+                    if (refineGold != 0)
+                    {
+                        amountRefineWeapon += ($"{refineGold} Gold ");
+                    }
+                    if (refineSilver != 0)
+                    {
+                        amountRefineWeapon += ($"{refineSilver} Silver ");
+                    }
+                    if (refineCopper != 0)
+                    {
+                        amountRefineWeapon += ($"{refineCopper} Copper");
+                    }
+
                     var isEquiped = item.IsEquipped ? " (Digunakan)" : "";
 
-                    Console.WriteLine($"{index}. {item.Name}{isEquiped} | Current Atk +{item.Status} Refine Cost : {refineCost}");
+                    Console.WriteLine($"{index}. {item.Name}{isEquiped} | Current Atk +{item.Status} Refine Cost : {amountRefineWeapon}.");
                     index++;
                 }
 
                 if (item is Armor armor)
                 {
                     int refineCost = armor.Status * 25; // Biaya perbaikan berdasarkan status
+                    var (refineGold, refineSilver, refineCopper) = ConvertCopper(refineCost);
+                    var amountRefineArmor = "";
+                    if (refineGold != 0)
+                    {
+                        amountRefineArmor += ($"{refineGold} Gold ");
+                    }
+                    if (refineSilver != 0)
+                    {
+                        amountRefineArmor += ($"{refineSilver} Silver ");
+                    }
+                    if (refineCopper != 0)
+                    {
+                        amountRefineArmor += ($"{refineCopper} Copper");
+                    }
+
                     var isEquiped = item.IsEquipped ? " (Digunakan)" : "";
-                    Console.WriteLine($"{index}. {item.Name}{isEquiped} | Current Def +{item.Status} Refine Cost : {refineCost}");
+                    Console.WriteLine($"{index}. {item.Name}{isEquiped} | Current Def +{item.Status} Refine Cost : {amountRefineArmor}.");
                     index++;
                 }
             }
@@ -323,6 +478,23 @@ namespace GameGabut.Model
             else if (item is Potion potion)
             {
                 return $"Healing +{potion.HealAmount}";
+            }
+            else if (item is RuneStone runeStone)
+            {
+                var improvement = string.Empty;
+                if (runeStone.AttackBonus != 0)
+                {
+                    improvement += $"Attack +{runeStone.AttackBonus} ";
+                }
+                if (runeStone.DefenseBonus != 0)
+                {
+                    improvement += $"Defense +{runeStone.DefenseBonus} ";
+                }
+                if (runeStone.CriticalChanceBonus != 0)
+                {
+                    improvement += $"Critical Chance +{runeStone.CriticalChanceBonus}";
+                }
+                return improvement;
             }
             return "";
         }
@@ -376,6 +548,10 @@ namespace GameGabut.Model
             {
                 UsePotion();
             }
+            else if (item is RuneStone)
+            {
+                UseRuneStone();
+            }
         }
 
         public void DisplayStatus()
@@ -392,9 +568,26 @@ namespace GameGabut.Model
             Console.WriteLine($"Critical Hit: {CriticalHit}x Attack");
             Console.WriteLine($"Critical Chance: {CriticalChance}%");
 
-            Console.WriteLine($"Experience: {Experience}/{Level * 100}");
-            Console.WriteLine($"Gold: {Gold}");
-            Console.WriteLine($"Deaths: {Deaths}");
+            var expLimit = ((Level * 100) + (Health * Level / 2));
+            Console.WriteLine($"Experience: {Experience} / {expLimit}");
+            //Console.WriteLine($"Gold: {Gold}");
+
+            var (gold, silver, copper) = ConvertCopper(Gold);
+            var amount = "";
+            if (gold != 0)
+            {
+                amount += ($"{gold} Gold ");
+            }
+            if (silver != 0)
+            {
+                amount += ($"{silver} Silver ");
+            }
+            if (copper != 0)
+            {
+                amount += ($"{copper} Copper");
+            }
+            Console.WriteLine($"Uang : {amount}.");
+            Console.WriteLine($"Kematian: {Deaths} kali");
 
             Console.WriteLine($"Senjata: {(EquippedWeapon != null ? EquippedWeapon.Name : "Tidak ada")}");
             Console.WriteLine($"Armor: {(EquippedArmor != null ? EquippedArmor.Name : "Tidak ada")}");
@@ -415,11 +608,11 @@ namespace GameGabut.Model
                     if (random.NextDouble() < 0.7)
                     {
                         // Refine berhasil, tambahkan Attack sesuai dengan peningkatan yang diinginkan
-                        int increaseAmount = random.Next(1, 6); // Contoh: peningkatan antara 1 sampai 5
+                        int increaseAmount = random.Next(1, Level < 10 ? 8 : Level); // Contoh: peningkatan antara 1 sampai Level Player
                         weapon.Status += increaseAmount;
                         weapon.Price = weapon.Price + (weapon.Price * 2 / 100);
 
-                        Console.WriteLine($"Berhasil merawat {weapon.Name}! Attack +{increaseAmount}");
+                        Console.WriteLine($"Berhasil meningkatkan {weapon.Name}! Attack +{increaseAmount}");
                     }
                     else
                     {
@@ -429,7 +622,7 @@ namespace GameGabut.Model
                 }
                 else
                 {
-                    Console.WriteLine("Emas tidak cukup untuk meningkatkan senjata ini.");
+                    Console.WriteLine("Uang kamu tidak cukup untuk meningkatkan senjata ini.");
                 }
             }
             else
@@ -454,10 +647,11 @@ namespace GameGabut.Model
                     if (random.NextDouble() < 0.7)
                     {
                         // Refine berhasil, tambahkan Attack sesuai dengan peningkatan yang diinginkan
-                        int increaseAmount = random.Next(1, 6); // Contoh: peningkatan antara 1 sampai 5
+                        int increaseAmount = random.Next(1, Level < 10 ? 8 : Level); // Contoh: peningkatan antara 1 sampai Level Player
                         armor.Status += increaseAmount;
+                        armor.Price = armor.Price + (armor.Price * 2 / 100);
 
-                        Console.WriteLine($"Berhasil merawat {armor.Name}! Defense +{increaseAmount}");
+                        Console.WriteLine($"Berhasil meningkatkan {armor.Name}! Defense +{increaseAmount}");
                     }
                     else
                     {
@@ -467,7 +661,7 @@ namespace GameGabut.Model
                 }
                 else
                 {
-                    Console.WriteLine("Emas tidak cukup untuk meningkatkan armor ini.");
+                    Console.WriteLine("Uang kamu tidak cukup untuk meningkatkan armor ini.");
                 }
             }
             else

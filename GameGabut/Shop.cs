@@ -24,16 +24,30 @@ namespace GameGabut
         public void Visit()
         {
             Console.WriteLine("\nSelamat datang di Toko!");
-            Console.WriteLine($"Gold Anda: {player.Gold}");
+
+            var (gold, silver, copper) = player.ConvertCopper(player.Gold);
+            var amount = "";
+            if (gold != 0)
+            {
+                amount += ($"{gold} Gold ");
+            }
+            if (silver != 0)
+            {
+                amount += ($"{silver} Silver ");
+            }
+            if (copper != 0)
+            {
+                amount += ($"{copper} Copper");
+            }
+            Console.WriteLine($"Uang Anda: {amount}");
             while (true)
             {
                 Console.WriteLine("\nPilihan:");
                 Console.WriteLine("1. Beli barang");
                 Console.WriteLine("2. Jual barang");
                 Console.WriteLine("0. Keluar dari toko");
-                Console.Write("Masukkan pilihan Anda: ");
 
-                int choice = int.Parse(Console.ReadLine());
+                int choice = GetIntegerInput("Masukkan pilihan Anda: ");
 
                 if (choice == 0) { player.SaveToJson(); break; }
                 else if (choice == 1) BuyItem();
@@ -44,7 +58,22 @@ namespace GameGabut
                 }
             }
         }
-
+        public static int GetIntegerInput(string prompt)
+        {
+            int value;
+            while (true)
+            {
+                Console.Write(prompt);
+                if (int.TryParse(Console.ReadLine(), out value))
+                {
+                    return value;
+                }
+                else
+                {
+                    Console.WriteLine("Inputan harus angka");
+                }
+            }
+        }
         private void BuyItem()
         {
             // Kode untuk membeli barang (sama seperti sebelumnya)
@@ -53,15 +82,43 @@ namespace GameGabut
                 Console.WriteLine("\nBarang yang tersedia:");
                 for (int i = 0; i < items.Count; i++)
                 {
-                    Console.WriteLine($"{i + 1}. {items[i].Name} [+{items[i].Status}] - {items[i].Price} Gold");
+                    var (gold, silver, copper) = player.ConvertCopper(items[i].Price);
+                    var amount = "";
+                    if (gold != 0)
+                    {
+                        amount += ($"{gold} Gold ");
+                    }
+                    if (silver != 0)
+                    {
+                        amount += ($"{silver} Silver ");
+                    }
+                    if (copper != 0)
+                    {
+                        amount += ($"{copper} Copper");
+                    }
+                    Console.WriteLine($"{i + 1}. {items[i].Name} [+{items[i].Status}] - {amount}");
                 }
 
                 Console.WriteLine("0. Kembali");
                 Console.WriteLine("");
-                Console.WriteLine($"Gold Anda: {player.Gold}");
-                Console.Write("Pilih barang yang ingin dibeli:");
 
-                int choice = int.Parse(Console.ReadLine());
+                var (gold1, silver1, copper1) = player.ConvertCopper(player.Gold);
+                var newAmount = "";
+                if (gold1 != 0)
+                {
+                    newAmount += ($"{gold1} Gold ");
+                }
+                if (silver1 != 0)
+                {
+                    newAmount += ($"{silver1} Silver ");
+                }
+                if (copper1 != 0)
+                {
+                    newAmount += ($"{copper1} Copper");
+                }
+                Console.WriteLine($"Uang Anda: {newAmount}");
+
+                int choice = GetIntegerInput("Pilih barang yang ingin dibeli: ");
 
                 if (choice == 0) break;
 
@@ -96,11 +153,24 @@ namespace GameGabut
             {
                 Item item = player.Inventory[i];
                 string equippedStatus = player.IsItemEquipped(item) ? "(Sedang digunakan)" : "";
-                Console.WriteLine($"{i + 1}. {item.Name} - {item.Price} Gold {equippedStatus}");
+                var (gold, silver, copper) = player.ConvertCopper(item.Price);
+                var amount = "";
+                if (gold != 0)
+                {
+                    amount += ($"{gold} Gold ");
+                }
+                if (silver != 0)
+                {
+                    amount += ($"{silver} Silver ");
+                }
+                if (copper != 0)
+                {
+                    amount += ($"{copper} Copper");
+                }
+                Console.WriteLine($"{i + 1}. {item.Name} - {amount} {equippedStatus}");
             }
 
-            Console.Write("Pilih barang yang ingin dijual: ");
-            int choice = int.Parse(Console.ReadLine());
+            int choice = GetIntegerInput("Pilih barang yang ingin dijual: ");
 
             if (choice > 0 && choice <= player.Inventory.Count)
             {
@@ -114,8 +184,37 @@ namespace GameGabut
                     int soldPrice = player.Sell(itemToSell);
                     if (soldPrice > 0)
                     {
-                        Console.WriteLine($"Kamu menjual {itemToSell.Name} seharga {soldPrice} gold.");
-                        Console.WriteLine($"Gold Anda: {player.Gold}");
+                        var (gold, silver, copper) = player.ConvertCopper(soldPrice);
+                        var soldAmount = "";
+                        if (gold != 0)
+                        {
+                            soldAmount += ($"{gold} Gold ");
+                        }
+                        if (silver != 0)
+                        {
+                            soldAmount += ($"{silver} Silver ");
+                        }
+                        if (copper != 0)
+                        {
+                            soldAmount += ($"{copper} Copper");
+                        }
+                        Console.WriteLine($"Kamu menjual {itemToSell.Name} seharga {soldAmount}.");
+
+                        var (gold1, silver1, copper1) = player.ConvertCopper(player.Gold);
+                        var newAmount = "";
+                        if (gold1 != 0)
+                        {
+                            newAmount += ($"{gold1} Gold ");
+                        }
+                        if (silver1 != 0)
+                        {
+                            newAmount += ($"{silver1} Silver ");
+                        }
+                        if (copper1 != 0)
+                        {
+                            newAmount += ($"{copper1} Copper");
+                        }
+                        Console.WriteLine($"Uang Anda: {newAmount}");
                     }
                 }
             }

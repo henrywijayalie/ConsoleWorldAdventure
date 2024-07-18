@@ -16,6 +16,8 @@ namespace GameGabut.Model
         public List<PotionData> Potions { get; set; } = new List<PotionData>();
         [JsonPropertyName("enemies")]
         public List<EnemyData> Enemies { get; set; } = new List<EnemyData>();
+        [JsonPropertyName("rune_stone")]
+        public List<RuneStoneData> RuneStones { get; set; } = new List<RuneStoneData>();
 
         public static GameData LoadFromJson(string filePath)
         {
@@ -55,6 +57,13 @@ namespace GameGabut.Model
                     gameData.Enemies.AddRange(enemyArray);
                 }
 
+                // Deserialize rune stone
+                if (root.TryGetProperty("rune_stones", out JsonElement runeStoneElement))
+                {
+                    RuneStoneData[] runeStoneArray = JsonSerializer.Deserialize<RuneStoneData[]>(runeStoneElement.GetRawText());
+                    gameData.RuneStones.AddRange(runeStoneArray);
+                }
+
                 return gameData;
             }
             catch (Exception ex)
@@ -75,10 +84,18 @@ namespace GameGabut.Model
 
     public class ArmorData
     {
-        
+
         public string Name { get; set; }
         public int Price { get; set; }
         public int DefenseBonus { get; set; }
+    }
+    public class RuneStoneData
+    {
+        public string Name { get; set; }
+        public int Price { get; set; }
+        public int AttackBonus { get; set; }
+        public int DefenseBonus { get; set; }
+        public double CriticalChanceBonus { get; set; }
     }
 
     public class PotionData

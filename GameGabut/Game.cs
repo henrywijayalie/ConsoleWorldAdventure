@@ -25,10 +25,10 @@ namespace GameGabut
             Console.WriteLine("Masukkan nama karakter:");
             string name = Console.ReadLine();
 
-            player = Player.LoadFromJson(name);
+            player = Player.LoadFromJson(name, gameData);
             if (player == null)
             {
-                player = new Player(name, 100, 10, 5, 5, 5);
+                player = new Player(name, 100, 10, 5, 5, 5, gameData);
                 Console.WriteLine("Karakter baru dibuat.");
             }
             else
@@ -38,6 +38,22 @@ namespace GameGabut
 
             enemies = gameData.Enemies.Select(e => new Enemy(e.Name, e.Health, e.Attack, e.Defense, e.CriticalHit, e.CriticalChance, e.ExpReward, e.GoldReward)).ToList();
             shop = new Shop(gameData, player);
+        }
+        public static int GetIntegerInput(string prompt)
+        {
+            int value;
+            while (true)
+            {
+                Console.Write(prompt);
+                if (int.TryParse(Console.ReadLine(), out value))
+                {
+                    return value;
+                }
+                else
+                {
+                    Console.WriteLine("Inputan harus angka");
+                }
+            }
         }
 
         public void Start()
@@ -52,24 +68,24 @@ namespace GameGabut
                 Console.WriteLine("3. Kunjungi toko");
                 Console.WriteLine("4. Lihat status");
                 Console.WriteLine("5. Simpan dan Keluar");
-                Console.Write("Input : ");
-                string choice = Console.ReadLine();
+
+                int choice = GetIntegerInput("Masukkan pilihan Anda: ");
 
                 switch (choice)
                 {
-                    case "1":
+                    case 1:
                         Battle();
                         break;
-                    case "2":
+                    case 2:
                         player.OpenInventory();
                         break;
-                    case "3":
+                    case 3:
                         shop.Visit();
                         break;
-                    case "4":
+                    case 4:
                         player.DisplayStatus();
                         break;
-                    case "5":
+                    case 5:
                         player.SaveToJson();
                         Console.WriteLine("Data karakter disimpan. Terima kasih telah bermain!");
                         return;
@@ -201,6 +217,9 @@ namespace GameGabut
                 case 1:
                     ArmorData armorData = gameData.Armors[random.Next(gameData.Armors.Count)];
                     return new Armor(armorData.Name, armorData.Price, armorData.DefenseBonus, armorData.DefenseBonus);
+                case 2:
+                    RuneStoneData runeStoneData = gameData.RuneStones[random.Next(gameData.RuneStones.Count)];
+                    return new RuneStone(runeStoneData.Name, runeStoneData.Price, 0, runeStoneData.AttackBonus, runeStoneData.DefenseBonus, runeStoneData.CriticalChanceBonus);
                 default:
                     PotionData potionData = gameData.Potions[random.Next(gameData.Potions.Count)];
                     return new Potion(potionData.Name, potionData.Price, potionData.HealAmount, potionData.HealAmount);
