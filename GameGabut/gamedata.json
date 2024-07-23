@@ -1,97 +1,1086 @@
 {
   "weapons": [
     {
-      "name": "Wooden Sword",
-      "price": 10,
-      "attackBonus": 2
+      "Name": "Wooden Sword",
+      "Price": 20,
+      "AttackBonus": 3
     },
     {
-      "name": "Iron Sword",
-      "price": 50,
-      "attackBonus": 5
+      "Name": "Dagger",
+      "Price": 25,
+      "AttackBonus": 4
     },
     {
-      "name": "Steel Sword",
-      "price": 100,
-      "attackBonus": 10
+      "Name": "Iron Sword",
+      "Price": 50,
+      "AttackBonus": 7
     },
     {
-      "name": "Mythril Sword",
-      "price": 500,
-      "attackBonus": 20
+      "Name": "Mace",
+      "Price": 75,
+      "AttackBonus": 9
+    },
+    {
+      "Name": "Spear",
+      "Price": 90,
+      "AttackBonus": 10
+    },
+    {
+      "Name": "Longbow",
+      "Price": 110,
+      "AttackBonus": 12
+    },
+    {
+      "Name": "Steel Sword",
+      "Price": 130,
+      "AttackBonus": 15
+    },
+    {
+      "Name": "Crossbow",
+      "Price": 150,
+      "AttackBonus": 17
+    },
+    {
+      "Name": "Claymore",
+      "Price": 180,
+      "AttackBonus": 20
+    },
+    {
+      "Name": "Scimitar",
+      "Price": 200,
+      "AttackBonus": 22
+    },
+    {
+      "Name": "Battle Axe",
+      "Price": 220,
+      "AttackBonus": 24
+    },
+    {
+      "Name": "Katana",
+      "Price": 400,
+      "AttackBonus": 30
+    },
+    {
+      "Name": "Warhammer",
+      "Price": 500,
+      "AttackBonus": 35
+    },
+    {
+      "Name": "Mythril Sword",
+      "Price": 800,
+      "AttackBonus": 45
+    },
+    {
+      "Name": "Excalibur",
+      "Price": 1200,
+      "AttackBonus": 100
+    },
+    {
+      "Name": "Hermes' Caduceus",
+      "Price": 2500,
+      "AttackBonus": 145
+    },
+    {
+      "Name": "Artemis' Hunting Bow",
+      "Price": 7000,
+      "AttackBonus": 210
+    },
+    {
+      "Name": "Hephaestus' Hammer",
+      "Price": 15000,
+      "AttackBonus": 325
+    },
+    {
+      "Name": "Apollo's Bow",
+      "Price": 20500,
+      "AttackBonus": 412
+    },
+    {
+      "Name": "Ares' War Axe",
+      "Price": 35000,
+      "AttackBonus": 540
+    },
+    {
+      "Name": "Athena's Spear",
+      "Price": 41275,
+      "AttackBonus": 650
+    },
+    {
+      "Name": "Hades' Bident",
+      "Price": 60000,
+      "AttackBonus": 718
+    },
+    {
+      "Name": "Poseidon's Trident",
+      "Price": 70000,
+      "AttackBonus": 847
+    },
+    {
+      "Name": "Zeus' Thunderbolt",
+      "Price": 80000,
+      "AttackBonus": 921
+    },
+    {
+      "Name": "Hercules' Club",
+      "Price": 100000,
+      "AttackBonus": 1220
+    },
+    {
+      "Name": "Sun Wukong's Ruyi Jingu Bang",
+      "Price": 150000,
+      "AttackBonus": 750
+    },
+    {
+      "Name": "Nuwa's Heavenly Bow",
+      "Price": 160000,
+      "AttackBonus": 780
+    },
+    {
+      "Name": "Nezha's Universe Ring",
+      "Price": 170000,
+      "AttackBonus": 810
+    },
+    {
+      "Name": "Ao Guang's Dragon Trident",
+      "Price": 180000,
+      "AttackBonus": 840
+    },
+    {
+      "Name": "Guanyin's Staff",
+      "Price": 190000,
+      "AttackBonus": 870
+    },
+    {
+      "Name": "Jade Emperor's Sword",
+      "Price": 200000,
+      "AttackBonus": 900
+    },
+    {
+      "Name": "Chiyou's Blood Axe",
+      "Price": 220000,
+      "AttackBonus": 960
+    },
+    {
+      "Name": "Yanluo's Reaper Scythe",
+      "Price": 240000,
+      "AttackBonus": 1020
+    },
+    {
+      "Name": "Zhurong's Fire Lance",
+      "Price": 260000,
+      "AttackBonus": 1080
+    },
+    {
+      "Name": "Guan Yu's Green Dragon Crescent Blade",
+      "Price": 280000,
+      "AttackBonus": 1140
+    },
+    {
+      "Name": "Hell Emperor's Celestial Blade",
+      "Price": 3282398,
+      "AttackBonus": 3687
+    },
+    {
+      "Name": "Heaven King's Celestial Sword",
+      "Price": 5182398,
+      "AttackBonus": 6287
+    },
+    {
+      "Name": "Void's Formless Sword",
+      "Price": 95182398,
+      "AttackBonus": 16287
     }
   ],
   "armors": [
     {
-      "name": "Leather Armor",
-      "price": 20,
-      "defenseBonus": 2
+      "Name": "Leather Armor",
+      "Price": 20,
+      "DefenseBonus": 3
     },
     {
-      "name": "Chain Mail",
-      "price": 80,
-      "defenseBonus": 5
+      "Name": "Padded Armor",
+      "Price": 30,
+      "DefenseBonus": 4
     },
     {
-      "name": "Plate Armor",
-      "price": 150,
-      "defenseBonus": 10
+      "Name": "Reinforced Leather Armor",
+      "Price": 40,
+      "DefenseBonus": 5
     },
     {
-      "name": "Dragon Scale Armor",
-      "price": 800,
-      "defenseBonus": 20
+      "Name": "Studded Leather Armor",
+      "Price": 60,
+      "DefenseBonus": 7
+    },
+    {
+      "Name": "Chain Mail",
+      "Price": 80,
+      "DefenseBonus": 9
+    },
+    {
+      "Name": "Brigandine Armor",
+      "Price": 120,
+      "DefenseBonus": 12
+    },
+    {
+      "Name": "Plate Armor",
+      "Price": 150,
+      "DefenseBonus": 15
+    },
+    {
+      "Name": "Lamellar Armor",
+      "Price": 180,
+      "DefenseBonus": 17
+    },
+    {
+      "Name": "Splint Mail",
+      "Price": 220,
+      "DefenseBonus": 20
+    },
+    {
+      "Name": "Banded Mail",
+      "Price": 280,
+      "DefenseBonus": 23
+    },
+    {
+      "Name": "Half Plate Armor",
+      "Price": 400,
+      "DefenseBonus": 27
+    },
+    {
+      "Name": "Full Plate Armor",
+      "Price": 600,
+      "DefenseBonus": 30
+    },
+    {
+      "Name": "Shadow Armor",
+      "Price": 800,
+      "DefenseBonus": 35
+    },
+    {
+      "Name": "Dragonscale Armor",
+      "Price": 1000,
+      "DefenseBonus": 40
+    },
+    {
+      "Name": "Adamantium Armor",
+      "Price": 1200,
+      "DefenseBonus": 45
+    },
+    {
+      "Name": "Divine Armor",
+      "Price": 8000,
+      "DefenseBonus": 70
+    },
+    {
+      "Name": "Celestial Armor",
+      "Price": 12000,
+      "DefenseBonus": 85
+    },
+    {
+      "Name": "Aether Armor",
+      "Price": 15000,
+      "DefenseBonus": 105
+    },
+    {
+      "Name": "Titan's Armor",
+      "Price": 18000,
+      "DefenseBonus": 130
+    },
+    {
+      "Name": "Heavenly Armor",
+      "Price": 20000,
+      "DefenseBonus": 157
+    },
+    {
+      "Name": "Hermes' Winged Boots",
+      "Price": 25000,
+      "DefenseBonus": 180
+    },
+    {
+      "Name": "Artemis' Hunter's Garb",
+      "Price": 30000,
+      "DefenseBonus": 234
+    },
+    {
+      "Name": "Hephaestus' Forged Plate",
+      "Price": 35000,
+      "DefenseBonus": 351
+    },
+    {
+      "Name": "Apollo's Radiant Armor",
+      "Price": 40000,
+      "DefenseBonus": 430
+    },
+    {
+      "Name": "Ares' Battle Plate",
+      "Price": 45000,
+      "DefenseBonus": 540
+    },
+    {
+      "Name": "Athena's Shield",
+      "Price": 50000,
+      "DefenseBonus": 650
+    },
+    {
+      "Name": "Hades' Shadow Cloak",
+      "Price": 60000,
+      "DefenseBonus": 760
+    },
+    {
+      "Name": "Poseidon's Scale Armor",
+      "Price": 70000,
+      "DefenseBonus": 880
+    },
+    {
+      "Name": "Zeus' Aegis",
+      "Price": 80000,
+      "DefenseBonus": 930
+    },
+    {
+      "Name": "Hercules' Lion Pelt",
+      "Price": 105423,
+      "DefenseBonus": 1220
+    },
+    {
+      "Name": "Dragon Lord's Armor",
+      "Price": 127348,
+      "DefenseBonus": 1470
+    },
+    {
+      "Name": "Sun Wukong's Golden Armor",
+      "Price": 152348,
+      "DefenseBonus": 1750
+    },
+    {
+      "Name": "Nuwa's Celestial Robe",
+      "Price": 165423,
+      "DefenseBonus": 1780
+    },
+    {
+      "Name": "Nezha's Fiery Armor",
+      "Price": 172378,
+      "DefenseBonus": 1810
+    },
+    {
+      "Name": "Ao Guang's Dragon Scale Mail",
+      "Price": 185380,
+      "DefenseBonus": 1840
+    },
+    {
+      "Name": "Guanyin's Lotus Vestments",
+      "Price": 192468,
+      "DefenseBonus": 1870
+    },
+    {
+      "Name": "Jade Emperor's Heavenly Robe",
+      "Price": 200238,
+      "DefenseBonus": 1900
+    },
+    {
+      "Name": "Chiyou's Iron Battle Plate",
+      "Price": 223847,
+      "DefenseBonus": 2260
+    },
+    {
+      "Name": "Yanluo's Reaper Cloak",
+      "Price": 249823,
+      "DefenseBonus": 2620
+    },
+    {
+      "Name": "Zhurong's Fire Armor",
+      "Price": 266243,
+      "DefenseBonus": 2980
+    },
+    {
+      "Name": "Guan Yu's Tiger Tally Armor",
+      "Price": 285234,
+      "DefenseBonus": 3240
+    },
+    {
+      "Name": "Hell Emperor's Celestial Armor",
+      "Price": 2606243,
+      "DefenseBonus": 6980
+    },
+    {
+      "Name": "Heaven King's Celestial Armor",
+      "Price": 25852347,
+      "DefenseBonus": 13240
+    },
+    {
+      "Name": "Void Armor",
+      "Price": 54585234,
+      "DefenseBonus": 13240
     }
   ],
   "potions": [
     {
-      "name": "Small Health Potion",
-      "price": 15,
-      "healAmount": 20
+      "Name": "Minor Healing Potion",
+      "Price": 10,
+      "HealAmount": 15
     },
     {
-      "name": "Medium Health Potion",
-      "price": 30,
-      "healAmount": 50
+      "Name": "Small Health Potion",
+      "Price": 20,
+      "HealAmount": 30
     },
     {
-      "name": "Large Health Potion",
-      "price": 60,
-      "healAmount": 100
+      "Name": "Healing Potion",
+      "Price": 30,
+      "HealAmount": 45
+    },
+    {
+      "Name": "Medium Health Potion",
+      "Price": 40,
+      "HealAmount": 60
+    },
+    {
+      "Name": "Greater Healing Potion",
+      "Price": 50,
+      "HealAmount": 80
+    },
+    {
+      "Name": "Large Health Potion",
+      "Price": 70,
+      "HealAmount": 100
+    },
+    {
+      "Name": "Elixir of Vitality",
+      "Price": 90,
+      "HealAmount": 120
+    },
+    {
+      "Name": "Potion of Regeneration",
+      "Price": 110,
+      "HealAmount": 140
+    },
+    {
+      "Name": "Restorative Draught",
+      "Price": 130,
+      "HealAmount": 160
+    },
+    {
+      "Name": "Potion of Radiant Healing",
+      "Price": 150,
+      "HealAmount": 180
+    },
+    {
+      "Name": "Elixir of Life",
+      "Price": 180,
+      "HealAmount": 210
+    },
+    {
+      "Name": "Potion of Immortality",
+      "Price": 200,
+      "HealAmount": 250
+    },
+    {
+      "Name": "Ambrosia of the Gods",
+      "Price": 220,
+      "HealAmount": 300
+    },
+    {
+      "Name": "Nectar of the Ancients",
+      "Price": 250,
+      "HealAmount": 350
+    },
+    {
+      "Name": "Panacea of Eternal Life",
+      "Price": 300,
+      "HealAmount": 400
+    },
+    {
+      "Name": "Ambrosia of Olympus",
+      "Price": 500,
+      "HealAmount": 800
+    },
+    {
+      "Name": "Nectar of the Gods",
+      "Price": 1200,
+      "HealAmount": 1400
+    },
+    {
+      "Name": "Elixir of Immortality",
+      "Price": 3000,
+      "HealAmount": 1750
+    },
+    {
+      "Name": "Draught of Mount Olympus",
+      "Price": 8125,
+      "HealAmount": 3600
+    },
+    {
+      "Name": "Chiyou's Essence Elixir",
+      "Price": 35000,
+      "HealAmount": 4900
+    },
+    {
+      "Name": "Nuwa's Vitality Brew",
+      "Price": 37000,
+      "HealAmount": 6950
+    },
+    {
+      "Name": "Jade Emperor's Elixir",
+      "Price": 39000,
+      "HealAmount": 10000
+    },
+    {
+      "Name": "Dragon's Blood Potion",
+      "Price": 41000,
+      "HealAmount": 28050
     }
   ],
   "enemies": [
     {
-      "name": "Goblin",
-      "health": 30,
-      "attack": 5,
-      "defense": 2,
-      "expReward": 10,
-      "goldReward": 5
+      "Name": "Goblin",
+      "Health": 30,
+      "Attack": 5,
+      "Defense": 2,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 10,
+      "GoldReward": 5
     },
     {
-      "name": "Orc",
-      "health": 50,
-      "attack": 8,
-      "defense": 3,
-      "expReward": 20,
-      "goldReward": 10
+      "Name": "Orc",
+      "Health": 50,
+      "Attack": 8,
+      "Defense": 3,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 20,
+      "GoldReward": 10
     },
     {
-      "name": "Troll",
-      "health": 100,
-      "attack": 12,
-      "defense": 5,
-      "expReward": 50,
-      "goldReward": 30
+      "Name": "Troll",
+      "Health": 100,
+      "Attack": 12,
+      "Defense": 5,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 50,
+      "GoldReward": 30
     },
     {
-      "name": "Dragon",
-      "health": 200,
-      "attack": 20,
-      "defense": 10,
-      "expReward": 100,
-      "goldReward": 100
+      "Name": "Dragon",
+      "Health": 200,
+      "Attack": 20,
+      "Defense": 10,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 100,
+      "GoldReward": 100
+    },
+    {
+      "Name": "Skeleton",
+      "Health": 40,
+      "Attack": 6,
+      "Defense": 1,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 15,
+      "GoldReward": 8
+    },
+    {
+      "Name": "Witch",
+      "Health": 60,
+      "Attack": 10,
+      "Defense": 4,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 25,
+      "GoldReward": 15
+    },
+    {
+      "Name": "Slime",
+      "Health": 20,
+      "Attack": 3,
+      "Defense": 1,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 8,
+      "GoldReward": 3
+    },
+    {
+      "Name": "Bandit",
+      "Health": 45,
+      "Attack": 7,
+      "Defense": 2,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 18,
+      "GoldReward": 7
+    },
+    {
+      "Name": "Werewolf",
+      "Health": 70,
+      "Attack": 11,
+      "Defense": 6,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 30,
+      "GoldReward": 20
+    },
+    {
+      "Name": "Golem",
+      "Health": 150,
+      "Attack": 15,
+      "Defense": 8,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 70,
+      "GoldReward": 50
+    },
+    {
+      "Name": "Vampire",
+      "Health": 80,
+      "Attack": 14,
+      "Defense": 4,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 35,
+      "GoldReward": 25
+    },
+    {
+      "Name": "Ghost",
+      "Health": 25,
+      "Attack": 4,
+      "Defense": 2,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 12,
+      "GoldReward": 4
+    },
+    {
+      "Name": "Spider",
+      "Health": 35,
+      "Attack": 5,
+      "Defense": 1,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 14,
+      "GoldReward": 6
+    },
+    {
+      "Name": "Cyclops",
+      "Health": 120,
+      "Attack": 18,
+      "Defense": 7,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 60,
+      "GoldReward": 40
+    },
+    {
+      "Name": "Hydra",
+      "Health": 180,
+      "Attack": 22,
+      "Defense": 12,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 90,
+      "GoldReward": 80
+    },
+    {
+      "Name": "Goblin King",
+      "Health": 150,
+      "Attack": 20,
+      "Defense": 15,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 200,
+      "GoldReward": 100
+    },
+    {
+      "Name": "Orc Warlord",
+      "Health": 200,
+      "Attack": 25,
+      "Defense": 18,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 250,
+      "GoldReward": 120
+    },
+    {
+      "Name": "Ancient Troll",
+      "Health": 300,
+      "Attack": 30,
+      "Defense": 20,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 300,
+      "GoldReward": 150
+    },
+    {
+      "Name": "Dragon Lord",
+      "Health": 500,
+      "Attack": 40,
+      "Defense": 25,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 500,
+      "GoldReward": 300
+    },
+    {
+      "Name": "Lich King",
+      "Health": 400,
+      "Attack": 35,
+      "Defense": 22,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 400,
+      "GoldReward": 200
+    },
+    {
+      "Name": "Demon Prince",
+      "Health": 450,
+      "Attack": 38,
+      "Defense": 24,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 450,
+      "GoldReward": 250
+    },
+    {
+      "Name": "Titan",
+      "Health": 600,
+      "Attack": 45,
+      "Defense": 30,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 600,
+      "GoldReward": 350
+    },
+    {
+      "Name": "Death Knight",
+      "Health": 550,
+      "Attack": 42,
+      "Defense": 28,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 550,
+      "GoldReward": 320
+    },
+    {
+      "Name": "Behemoth",
+      "Health": 700,
+      "Attack": 50,
+      "Defense": 35,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 700,
+      "GoldReward": 400
+    },
+    {
+      "Name": "Archmage",
+      "Health": 600,
+      "Attack": 48,
+      "Defense": 32,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 650,
+      "GoldReward": 380
+    },
+    {
+      "Name": "Dark Shaman",
+      "Health": 120,
+      "Attack": 15,
+      "Defense": 12,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 150,
+      "GoldReward": 80
+    },
+    {
+      "Name": "Frost Giant",
+      "Health": 180,
+      "Attack": 22,
+      "Defense": 16,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 180,
+      "GoldReward": 90
+    },
+    {
+      "Name": "Fire Elemental",
+      "Health": 160,
+      "Attack": 18,
+      "Defense": 14,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 170,
+      "GoldReward": 85
+    },
+    {
+      "Name": "Skeletal Champion",
+      "Health": 140,
+      "Attack": 17,
+      "Defense": 13,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 160,
+      "GoldReward": 82
+    },
+    {
+      "Name": "Venomous Serpent",
+      "Health": 130,
+      "Attack": 16,
+      "Defense": 11,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 155,
+      "GoldReward": 81
+    },
+    {
+      "Name": "Iron Golem",
+      "Health": 200,
+      "Attack": 24,
+      "Defense": 18,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 190,
+      "GoldReward": 95
+    },
+    {
+      "Name": "Cursed Knight",
+      "Health": 170,
+      "Attack": 21,
+      "Defense": 15,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 175,
+      "GoldReward": 88
+    },
+    {
+      "Name": "Shadow Assassin",
+      "Health": 150,
+      "Attack": 19,
+      "Defense": 14,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 165,
+      "GoldReward": 83
+    },
+    {
+      "Name": "Thunder Elemental",
+      "Health": 175,
+      "Attack": 23,
+      "Defense": 17,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 185,
+      "GoldReward": 92
+    },
+    {
+      "Name": "Demonic Warlock",
+      "Health": 190,
+      "Attack": 25,
+      "Defense": 19,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 195,
+      "GoldReward": 98
+    },
+    {
+      "Name": "Wyvern",
+      "Health": 210,
+      "Attack": 26,
+      "Defense": 20,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 200,
+      "GoldReward": 100
+    },
+    {
+      "Name": "Mystic Oracle",
+      "Health": 180,
+      "Attack": 22,
+      "Defense": 16,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 185,
+      "GoldReward": 92
+    },
+    {
+      "Name": "Ancient Guardian",
+      "Health": 220,
+      "Attack": 27,
+      "Defense": 21,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 210,
+      "GoldReward": 105
+    },
+    {
+      "Name": "Steel Colossus",
+      "Health": 230,
+      "Attack": 28,
+      "Defense": 22,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 220,
+      "GoldReward": 110
+    },
+    {
+      "Name": "Chaos Wraith",
+      "Health": 240,
+      "Attack": 29,
+      "Defense": 23,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 230,
+      "GoldReward": 115
+    },
+    {
+      "Name": "Frost Dragon",
+      "Health": 250,
+      "Attack": 30,
+      "Defense": 24,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 240,
+      "GoldReward": 120
+    },
+    {
+      "Name": "Hellfire Demon",
+      "Health": 260,
+      "Attack": 31,
+      "Defense": 25,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 250,
+      "GoldReward": 125
+    },
+    {
+      "Name": "Spectral Mage",
+      "Health": 270,
+      "Attack": 32,
+      "Defense": 26,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 260,
+      "GoldReward": 130
+    },
+    {
+      "Name": "Titanic Beast",
+      "Health": 280,
+      "Attack": 33,
+      "Defense": 27,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 270,
+      "GoldReward": 135
+    },
+    {
+      "Name": "Dreadlord",
+      "Health": 290,
+      "Attack": 34,
+      "Defense": 28,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 280,
+      "GoldReward": 140
+    },
+    {
+      "Name": "Elder Dragon",
+      "Health": 800,
+      "Attack": 50,
+      "Defense": 40,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 500,
+      "GoldReward": 250
+    },
+    {
+      "Name": "Archdemon",
+      "Health": 850,
+      "Attack": 65,
+      "Defense": 45,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 550,
+      "GoldReward": 275
+    },
+    {
+      "Name": "Celestial Seraph",
+      "Health": 900,
+      "Attack": 60,
+      "Defense": 50,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 600,
+      "GoldReward": 300
+    },
+    {
+      "Name": "Ancient Titan",
+      "Health": 750,
+      "Attack": 65,
+      "Defense": 55,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 650,
+      "GoldReward": 325
+    },
+    {
+      "Name": "Void Sovereign",
+      "Health": 1200,
+      "Attack": 90,
+      "Defense": 60,
+      "CriticalHit": 1.2,
+      "CriticalChance": 5,
+      "ExpReward": 700,
+      "GoldReward": 350
+    }
+  ],
+  "rune_stones": [
+    {
+      "Name": "Rune of Power",
+      "Price": 2534,
+      "AttackBonus": 3,
+      "DefenseBonus": 0,
+      "CriticalChanceBonus": 0.1
+    },
+    {
+      "Name": "Rune of Protection",
+      "Price": 2526,
+      "AttackBonus": 0,
+      "DefenseBonus": 4,
+      "CriticalChanceBonus": 0
+    },
+    {
+      "Name": "Rune of Precision",
+      "Price": 2568,
+      "AttackBonus": 1,
+      "DefenseBonus": 1,
+      "CriticalChanceBonus": 0.1
+    },
+    {
+      "Name": "Rune of Fortitude",
+      "Price": 2598,
+      "AttackBonus": 2,
+      "DefenseBonus": 1,
+      "CriticalChanceBonus": 0.1
+    },
+    {
+      "Name": "Rune of Fury",
+      "Price": 2565,
+      "AttackBonus": 5,
+      "DefenseBonus": 1,
+      "CriticalChanceBonus": 0.2
+    },
+    {
+      "Name": "Rune of Chances",
+      "Price": 2565,
+      "AttackBonus": 0,
+      "DefenseBonus": 0,
+      "CriticalChanceBonus": 1.2
+    },
+    {
+      "Name": "Rune of God",
+      "Price": 2565,
+      "AttackBonus": 8,
+      "DefenseBonus": 3,
+      "CriticalChanceBonus": 0.8
     }
   ]
 }
